@@ -13,38 +13,50 @@ Projeto que visa auxiliar no controle de estoque e nas rotinas administrativas d
 # 🚀 Proposta <a name="id01"></a>
 
 <!-- O projeto "MyCity" tem como objetivo promover a zeladoria pública em nossa cidade, estimulando a participação da comunidade na conservação do espaço urbano e na adoção de práticas sustentáveis. -->
-O projeto de estoque tem como objetivo facilitar o controle das entradas e saídas de produtos de uma empresa, além de fornecer uma ferramenta para de PCP, onde o usuário poderá informar pedidos que foram finalizados, registrando data e hora, além de outras informações úteis e pertinentes. Conta ainda com uma calculadora que auxilia no entendimento dos pedidos que serão produzidos dentro da empresa.
+O projeto de estoque tem como objetivo facilitar o controle das entradas e saídas de produtos de uma empresa, além de fornecer uma ferramenta para o PCP, onde o usuário poderá informar pedidos que foram finalizados, registrando data e hora, além de outras informações úteis e pertinentes. Conta ainda com uma calculadora que auxilia no entendimento dos pedidos que serão produzidos dentro da empresa.
 
 <br />
 
 # 📷 Screenshots <a name="id03"></a>
 
-### Homepage
+### Página de Login
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/3b763d1a-b79e-454b-9498-5ca9fab3814e)
 
-![image](C:\Projects\Sln.Estoque\images-readme\1.png)
 <br />
 
-### Tela de listagem de Relatos
-![image](https://user-images.githubusercontent.com/77354425/225474454-e41378ab-a06f-4f4e-97c4-c73125774d7e.png)
+### Página inicial
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/fc0d0d1a-3b7c-4a91-9a7a-8240782b3aed)
+
 <br />
 
-### Tela de detalhes de relato
-![image](https://user-images.githubusercontent.com/77354425/225475401-6b125ba3-ca20-4f01-954f-37374d52b11a.png)
+### Tela para visualização dos usuários registrados e alteração das permissões
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/a8ff69d8-a5c8-4401-bec5-45465622945d)
+
 <br />
 
-### Tela de criação de usuário
+### Tela para visualização dos produtos em estoque
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/3d625977-4fa6-4e27-9ee6-63af6b7eba5b)
 
-![image](https://user-images.githubusercontent.com/77354425/225473748-7d544912-ac3a-405b-be4c-5a0abdf404d2.png)
 <br />
 
-### Tela de Login
+### Tela de pedidos finalizados
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/9e8f0b16-0f59-457d-8cd4-00d8ec461332)
 
-![image](https://user-images.githubusercontent.com/77354425/225473903-c2502bbb-f1bf-4685-b75a-ae97c0c874b3.png)
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/f81b7ca5-7e39-4e50-b716-6c8f6fe06fb2)
+
 <br />
 
-### Tela de registrar relato
+### Tela de exportação dos pedidos finalizados com filtro de data início e fim
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/746a44a3-3617-4fd7-a5d1-d5fe7cd3262e)
 
-![image](https://user-images.githubusercontent.com/77354425/225475196-65a53c20-f6bd-42eb-8946-289c551340aa.png)
+<br />
+
+### Tela para cálculo do número total de produtos dentro de um determinado arquivo txt
+
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/0cb5b0dc-d14a-498f-8c4a-def8b0928097)
+
+![image](https://github.com/GersonBonetti/Projeto-Estoque-PCP/assets/87243693/c8fe1708-d664-49f8-be9e-a15ac7911def)
+
 <br />
 
 # 🛠 Feito com <a name="id04"></a>
@@ -63,5 +75,5 @@ O projeto de estoque tem como objetivo facilitar o controle das entradas e saíd
 
 <br />
 
-- (https://www.linkedin.com/in/gerson-gileade-bonetti/) - Gérson Gileade Bonetti  
-- (https://www.linkedin.com/in/munardt/) - Gabriel Arthur Mundt  
+- [Gérson Gileade Bonetti](https://www.linkedin.com/in/gerson-gileade-bonetti/)
+- [Gabriel Arthur Mundt](https://www.linkedin.com/in/munardt/)
