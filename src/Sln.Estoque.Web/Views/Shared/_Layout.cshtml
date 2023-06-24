@@ -1,0 +1,113 @@
+﻿@{
+	List<string> roles = User.Claims
+					.Where(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+					.Select(c => c.Value)
+					.ToList();
+
+	string? userRole = roles.FirstOrDefault();
+}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>YF - @ViewData["Title"]</title>
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/pagination.css" />
+	<link rel="stylesheet" href="~/Sln.Estoque.Web.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/sweetalert2/sweetalert2.min.css" />
+	<link rel="stylesheet" href="~/css/datepicker.css" />
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-2">
+			<div class="container-fluid d-flex align-middle">
+				<a class="navbar-brand text-white p-2 mb-1" asp-area="" asp-controller="Home" asp-action="Index">Estoque</a>
+				<div class="text-white" id="navUsername">
+					Faça o <a class="text-decoration-none" style="color: white" asp-controller="User" asp-action="Index">Login</a>
+				</div>
+				<div class="navbar-collapse collapse d-sm-inline-flex justify-content-start">
+					<ul class="navbar-nav flex-grow-1 justify-content-end m-1 fs-6">
+						@if (userRole == "Alta")
+						{
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gerências</a>
+								<ul id="navbar-dropdown-ul" class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<li class="nav-item"><a class="nav-link text-black" href="/User/List">Usuários</a></li>
+									<li class="nav-item"><a class="nav-link text-black" href="/Category">Categorias</a></li>
+									<li class="nav-item"><a class="nav-link text-black" href="/Unit">Unidades</a></li>
+									<li class="nav-item"><a class="nav-link text-black" href="/Calculator/Index">Layouts Calculáveis</a></li>
+								</ul>
+							</li>
+						}
+						@if (new[] { "Alta", "Média", "Baixa", }.Contains(userRole))
+						{
+							<li class="nav-item"><a class="nav-link text-white" href="/PCP/Index">Pedidos</a></li>
+							<li class="nav-item"><a class="nav-link text-white" href="/Product">Estoque</a></li>
+							<li class="nav-item"><a class="nav-link text-white" href="/Calculator/Calculate">Calculadora</a></li>
+						}
+						else if (userRole == "Calculadora")
+						{
+							<li class="nav-item"><a class="nav-link text-white" href="/Calculator/Calculate">Calculadora</a></li>
+						} 
+						else if (userRole == "Compras")
+						{
+							<li class="nav-item"><a class="nav-link text-white" href="/Product">Estoque</a></li>
+						}
+						<li id="logoutLink" class="nav-item"><a class="nav-link text-white" onclick="logout()" href="/User/Index">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="container">
+		<main role="main" class="pb-2">
+			@RenderBody()
+		</main>
+	</div>
+
+	<footer class="border-top footer text-muted mt-1">
+		<div class="container text-white justify-content-center text-center fs-6">
+			&copy; 2023 - Estoque Web
+		</div>
+	</footer>
+
+	<!-- Messages using Modal Component Delete -->
+	<div class="modal fade" id="msgModal" tabindex="-1" aria-labelledby="msgModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content bg-dark text-white border-mdlbd">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 " id="msgModalLabel">@ViewData["Title"]</h1>
+					<button type="button" class="btn-close bg-light" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div id="modal-body" class="modal-body text-center align-middle text-white">
+					...
+				</div>
+				<div id="footer-modal" class="modal-footer d-flex justify-content-around border-0">
+					...
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+	<script src="~/lib/js-cookie/js.cookie.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/js/datepicker.min.js" asp-append-version="true"></script>
+	<script src="~/js/moment.min.js" asp-append-version="true"></script>
+	<script src="~/js/fileSaver.js" asp-append-version="true"></script>
+	<script src="~/js/calculator.js" asp-append-version="true"></script>
+	<script src="~/js/category.js" asp-append-version="true"></script>
+	<script src="~/js/pcp.js" asp-append-version="true"></script>
+	<script src="~/js/product.js" asp-append-version="true"></script>
+	<script src="~/js/unit.js" asp-append-version="true"></script>
+	<script src="~/js/user.js" asp-append-version="true"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

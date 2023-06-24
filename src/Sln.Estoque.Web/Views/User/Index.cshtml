@@ -1,0 +1,62 @@
+﻿@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>YF - Login</title>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="~/Sln.Estoque.Web.styles.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+	<link rel="stylesheet" href="~/lib/sweetalert2/sweetalert2.min.css" />
+</head>
+
+<body style="overflow-y:hidden">
+	<main>
+		<div class="container mt-3 col-10 w-75 bg-gabs-primary ">
+			<div class="row align-items-stretch justify-content-center rounded">
+				<div class="col bg-white d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded-start-5">
+					<h2 class="title-description fw-bold text-black text-center justify-content-center m-5 fw-bold">Bem-vindo à tela de login!</h2>
+					<h4 class="description-paragraph text-black-50 text-center justify-content-center">Gerencie seus produtos de forma simples e eficiente</h4>
+					<img src="~/img/login/description.svg" alt="YF Automação" class="description-img">
+				</div>
+				<div class="col bg-gabs p-5 mx rounded-end-5">
+					
+					<h2 class="fw-bold text-white text-center py-5">Digite seu usuário e senha para acessar sua conta</h2>
+
+					<!-- Login -->
+					<form>
+						<div class="mb-4">
+							<label for="user" class="form-label">Usuário</label>
+							<input type="text" id="username" class="form-control" name="username" placeholder="@@usuario">
+						</div>
+						<div class="mb-4">
+							<label for="password" class="form-label">Senha</label>
+							<input type="password" id="password" class="form-control" onfocus="this.value='';" name="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+						</div>
+						<div class="d-grid">
+							<button type="submit" id="loginButton" onclick="login()" class="btn btn-primary fw-bold">L O G I N</button>
+						</div>
+						<div class="my-4 text-center">
+							<h6><a href="" style="text-decoration:none; color:aliceblue;">Esqueci minha senha</a></h6>
+						</div>
+						<div class="modal" id="modal" tabindex="-1"></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
+	<script src="~/lib/js-cookie/js.cookie.min.js"></script>
+	@*<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>*@ @*PRECISARÁ SER BAIXADO PARA O PROJETO*@
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>
+
+

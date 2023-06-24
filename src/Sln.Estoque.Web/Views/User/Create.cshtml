@@ -1,0 +1,50 @@
+﻿@model Sln.Estoque.Domain.DTO.UserDTO
+
+@{
+	ViewData["Title"] = "Adicionar Usuário";
+}
+
+<h1>Adicionar novo usuário</h1>
+
+<hr />
+<div class="d-flex justify-content-center">
+	<form asp-action="Create" class="d-flex align-items-center justify-content-center col-10 row">
+		<div class="col-12 row justify-content-around">
+			<div class="my-3 col-4">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="form-group my-3">
+					<label class="control-label mb-1">Nome</label>
+					<input asp-for="name" class="form-control border-dark" placeholder="Nome completo" />
+					<span asp-validation-for="name" class="text-danger"></span>
+				</div>
+				<div class="form-group my-3">
+					<label class="control-label mb-1">Usuário para login</label>
+					<input asp-for="username" class="form-control border-dark" placeholder="Ex.: @@meuUsuario" />
+					<span asp-validation-for="username" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="my-3 col-4">
+				<div class="form-group my-3">
+					<label class="control-label mb-1">Senha</label>
+					<input id="input-create-user1" asp-for="password" class="form-control border-dark" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+					<span asp-validation-for="password" class="text-danger"></span>
+				</div>
+				<div class="form-group my-3">
+					<label class="control-label mb-1">Repita a sua senha</label>
+					<input id="input-create-user2" class="form-control border-dark" onkeyup="createPassword()" type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;" />
+					<span class="text-danger"></span>
+					<span id="error-create-password-user" class="p-2 text-danger disappear">As senhas estão diferentes!</span>
+				</div>
+			</div>
+		</div>
+		<div class="form-group my-0 col-4">
+			<label class="control-label mb-1">Nível de Autorização</label>
+			<select asp-for="roleId" class="form-control border-dark" asp-items="ViewBag.RoleId"></select>
+		</div>
+		<div class="d-flex flex-column align-items-center">
+			<div class="my-3 d-flex">
+				<input id="btn-create-user" type="submit" value="Criar Usuário" class="btn btn-dark disabled" />
+			</div>
+		</div>
+	</form>
+</div>

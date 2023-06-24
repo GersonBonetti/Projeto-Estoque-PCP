@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Sln.Estoque.Domain.DTO.UserDTO>
+
+@{
+    ViewData["Title"] = "Lista de Usuários";
+}
+
+<div id="divBtnSearch" class="d-flex align-middle justify-content-between">
+    <p class="btnNewItem">
+        <a class="btn btn-dark" asp-action="Create">Novo Usuário</a>
+    </p>
+    <div class="div-search-bar input mb-3 col-md-3 d-flex justify-content-end align-middle align-items-center" style="height:2.5em;margin-top:2px;">
+        <button onclick="showBar()" type="submit" class="btn-sm buttonBar btn">
+            <img src="~/img/products/search.png" width="22" class="m-1 align-middle" />
+        </button>
+        <input type="text" id="myInput" class="searchBar form-control input-home" placeholder="Pesquisar...(código ou nome)">
+    </div>
+</div>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    ID
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.username)
+                </th>
+                <th class="text-center">
+                    @Html.DisplayNameFor(model => model.roleId)
+                </th>
+                <th id="headerAction" class="text-center">Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaIndex">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center align-middle">
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td class="text-center align-middle">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td class="text-center align-middle">
+                        @Html.DisplayFor(modelItem => item.username)
+                    </td>
+                    <td class="text-center align-middle">
+                        @Html.DisplayFor(modelItem => item.role.Level)
+                    </td>
+                    <td class="text-center align-middle btnActions">
+                        <a class="btn btn-secondary me-1 btnEditProd" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+                        <a class="btn btn-danger btnDelProd me-1" href="#" onclick="deleteUser(@item.id, '@item.name')"> Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

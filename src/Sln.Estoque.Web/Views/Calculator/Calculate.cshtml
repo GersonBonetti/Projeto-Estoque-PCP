@@ -1,0 +1,35 @@
+﻿@{
+	ViewData["Title"] = "Calculadora";
+}
+
+<div id="containerTable" class="mt-4 d-flex flex-column">
+	<div class="mb-5 d-flex justify-content-between align-items-center">
+		<div>
+			<input class="btn-check" type="checkbox" value="" onclick="clickAllRows()" id="inputSelectAllRows">
+			<label class="btn btn-white border-dark" for="inputSelectAllRows" id="labelSelectAllRows">Marcar todas as linhas</label>
+		</div>
+		<div class ="d-flex justify-content-between">
+			<button class="btn btn-dark" onclick="clearTable()">Limpar Tabela</button>
+		</div>
+		<div id="totalFilesDiv">
+			<h5 id="totalFiles">Total de Arquivos: <span id="countPartialFiles">0</span> / <span id="countToDoFiles">0</span> / <span id="countTotalFiles">0</span></h5>
+		</div>
+		<div id="totalLabelsDiv">
+			<h5 id="totalLabels">Total de Etiquetas: <span id="countPartialLabels">0</span> / <span id="countToDoLabels">0</span> / <span id="countTotalLabels">0</span></h5>
+		</div>
+	</div>
+	<table id="fileTable" class="table">
+		<thead>
+			<tr>
+				<th>Finalizado</th>
+				<th>Nome do Layout</th>
+				<th>Nome do Arquivo</th>
+				<th>Quantidade</th>
+			</tr>
+		</thead>
+		<tbody id="tabelaIndex"></tbody>
+	</table>
+	<div class="mt-3 rounded d-flex justify-content-center">
+		<div id="dropzone">Arraste e solte os arquivos aqui!</div>
+	</div>
+</div>

@@ -1,0 +1,108 @@
+﻿@model Sln.Estoque.Domain.DTO.ProductDTO
+
+@{
+	ViewData["Title"] = "Editar Produto";
+}
+
+<h1>Editar</h1>
+
+<h4>Produto</h4>
+<hr />
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="id" />
+			<div class="form-group my-3">
+				<label asp-for="codeProduct" class="control-label"></label>
+				<input asp-for="codeProduct" class="form-control border-dark border-dark" />
+				<span asp-validation-for="codeProduct" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<label asp-for="name" class="control-label"></label>
+				<input asp-for="name" class="form-control border-dark" />
+				<span asp-validation-for="name" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<label asp-for="alias" class="control-label mb-1"></label>
+				<input asp-for="alias" class="form-control border-dark" />
+				<span asp-validation-for="alias" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<label class="control-label">Quantidade</label>
+				<input asp-for="quantity" class="form-control border-dark" />
+				<span asp-validation-for="quantity" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3 disappear">
+				<label class="control-label">Id da Unidade</label>
+				<input asp-for="unitId" id="unitInput" class="form-control border-primary" />
+				<span asp-validation-for="unitId" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<label class="control-label mb-1">Unidade de Medida</label>
+				<select asp-for="unit" class="form-control border-dark" asp-items="ViewBag.Unidades" onchange="unitSelector(this)"></select>
+			</div>
+			<div class="form-group my-3">
+				<label asp-for="price" class="control-label mb-1"></label>
+				<div class="input-group">
+					<span class="input-group-text border-dark">R$</span>
+					<input asp-for="price" id="value" onkeyup="valueCheck()" class="form-control d-block border-dark" maxlength="12" />
+				</div>
+				<span asp-validation-for="price" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3 disappear" >
+				<label asp-for="categoryId" class="control-label mb-1"></label>
+				<input asp-for="categoryId" id="categoriaInput" class="form-control border-primary"/>
+				<span asp-validation-for="categoryId" class="text-danger"></span>
+			</div>
+			<div class="form-group my-3">
+				<label class="control-label mb-1">Categoria</label>
+				<select asp-for="category" class="form-control border-dark" asp-items="ViewBag.Categorias" onchange="categorySelector(this)"></select>
+			</div>
+			<div class="form-group my-3 my-4">
+				<input type="submit" value="Salvar" class="btn btn-dark" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="mb-5">
+	<a asp-action="Index" class="text-decoration-none link-dark">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+	<script>
+		const categorySelector = (selected) => {
+			var text = selected.options[selected.selectedIndex].text;
+			$.ajax({
+				url: `@Url.Action("GetCategory")`,
+				method: 'GET',
+				data: {
+					category: text
+				},
+				success: (resp) => {
+					if (resp.code == '200') {
+						$("#categoriaInput").val(resp.id)
+					}
+				}
+			});
+		};
+
+		const unitSelector = (selected) => {
+			var text = selected.options[selected.selectedIndex].text;
+			$.ajax({
+				url: `@Url.Action("GetUnit")`,
+				method: 'GET',
+				data: {
+					unit: text
+				},
+				success: (resp) => {
+					if (resp.code == '200') {
+						$("#unitInput").val(resp.id)
+					}
+				}
+			});
+		};
+	</script>
+}

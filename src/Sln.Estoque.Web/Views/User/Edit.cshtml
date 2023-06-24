@@ -1,0 +1,41 @@
+﻿@model Sln.Estoque.Domain.DTO.UserDTO
+
+@{
+    ViewData["Title"] = "Editar Usuário";
+}
+
+<h1>Editando</h1>
+
+<h4>Usuário </h4>
+<hr />
+<div class="d-flex justify-content-center">
+    <form asp-action="Edit" class="d-flex align-items-center justify-content-center col-10 row">
+        <div class="col-12 row justify-content-around">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="my-3 col-4">
+                <input type="hidden" asp-for="id"/>
+                <div class="form-group mb-3">
+                    <label class="control-label mb-1">Nome</label>
+                    <input asp-for="name" id="input-name-user-edit" class="form-control border-dark" placeholder="Nome completo" />
+                    <span asp-validation-for="name" class="text-danger"></span>
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label mb-1">Usuário para login</label>
+                    <input asp-for="username" class="form-control border-dark" placeholder="Ex.: @@meuUsuario" />
+                    <span asp-validation-for="username" class="text-danger"></span>
+                </div>
+                <div class="form-group my-3">
+                    <label class="control-label mb-1">Nível de Autorização</label>
+                    <select asp-for="roleId" class="form-control border-dark" asp-items="ViewBag.Role"></select>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between col-4">
+            <a class="btn btn-dark" href="#" onclick="modalPassword()">Alterar Senha</a>
+            <input type="submit" value="Editar Usuário" class="btn btn-dark" />
+        </div>
+        <div class="d-flex flex-column align-items-center mt-4">
+            <a asp-action="List" class="text-decoration-none link-dark">Voltar para a lista</a>
+        </div>
+    </form>
+</div>

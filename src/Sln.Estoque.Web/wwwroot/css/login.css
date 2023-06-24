@@ -1,0 +1,36 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+body 
+{
+    font-family: 'Ubuntu', sans-serif;
+    background: #161A1D;
+}
+
+.bg-gabs
+{
+    background: #0B090A;
+}
+
+.my-3 
+{
+    outline: none;
+}
+
+.mb-4 
+{
+    color: #FFFFFF;
+}
+
+.btn-primary 
+{
+    background-color: transparent;
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+
+.btn-primary:hover 
+{
+    background-color: #E5383B;
+    color: #fff;
+    border-color: #E5383B;
+}

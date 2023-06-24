@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Sln.Estoque.Domain.DTO.FinishedOrderDTO>
+
+@{
+	ViewData["Title"] = "Pedidos Finalizados";
+	string? userRole = ViewBag.UserRole;
+}
+
+<div class="d-flex justify-content-between align-items-center">
+	<h3>Pedidos Finalizados: @ViewBag.Quantity</h3>
+</div>
+<hr />
+
+<div class="d-flex align-middle justify-content-between">
+	<div class="d-flex justify-content-between">
+		<p class="m-1">
+			<button id="register-create-btn" class="btn btn-dark" type="button">Criar Registro</button>
+			<button id="search-order-btn" class="btn btn-dark" type="button">Buscar Pedido</button>
+			@if (userRole == "Alta")
+			{
+				<button id="export-csv-pcp-btn" class="btn btn-dark" type="button">Exportar Planilha</button>
+			}
+		</p>
+	</div>
+	<div id="divBtnSearch" class="d-flex align-middle justify-content-end">
+		<div class="div-search-bar input mb-3 d-flex align-middle align-items-center" style="height:2.5em;margin-top:2px;">
+			<button id="button-bar-pcp" type="submit" class="btn-sm btn">
+				<img src="~/img/products/search.png" width="22" class="m-1 align-middle" />
+			</button>
+			<input type="text" id="input-pcp" class="searchBar form-control input-home" placeholder="Pesquisar..." style="width:16em;margin-top:2px;">
+		</div>
+	</div>
+</div>
+
+<table class="table align-middle justify-content-around">
+	<thead>
+		<tr>
+			<th class="text-center">
+				Pedido
+			</th>
+			<th class="text-center">
+				Código Layout
+			</th>
+			<th class="text-center">
+				Quantidade
+			</th>
+			<th class="text-center">
+				Data da Finalização
+			</th>
+			<th class="text-center">
+				Operador
+			</th>
+			@if (new[] { "Alta", "Média" }.Contains(userRole))
+			{
+				<th id="actions-pcp-header" class="text-center">Ações</th>
+			}
+		</tr>
+	</thead>
+	<tbody id="tabelaIndex">
+		@foreach (var item in Model)
+		{
+			<tr data-id="@item.id">
+				<td class="text-center align-middle order-id">
+					N° @Html.DisplayFor(modelItem => item.orderId)
+				</td>
+				<td class="text-center align-middle order-layout-code">
+					@Html.DisplayFor(modelItem => item.layoutCode)
+				</td>
+				<td class="text-center align-middle order-quantity">
+					@Html.DisplayFor(modelItem => item.quantity)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.dateFinish)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.user.Name)
+				</td>
+				@if (new[] { "Alta", "Média"}.Contains(userRole))
+				{
+					<td id="actions-pcp-data" class="text-center align-middle actions-pcp-row">
+						<a class="btn btn-secondary me-1 btn-edit-order" onclick="editOrder(event, @item.id)">Editar</a>
+						<a class="btn btn-danger btn-delete-order me-1" href="#" onclick="deleteOrder(@item.id, '@item.orderId')">Excluir</a>
+					</td>
+				}
+			</tr>
+		}
+	</tbody>
+</table>

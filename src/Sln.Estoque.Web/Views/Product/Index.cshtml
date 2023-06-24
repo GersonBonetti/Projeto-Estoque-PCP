@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Sln.Estoque.Domain.DTO.ProductDTO>
+
+@{
+	ViewData["Title"] = "Produtos";
+	int contador = 0;
+	string? userRole = ViewBag.UserRole;
+}
+
+<div class="d-flex align-middle justify-content-between">
+	@if (new[] { "Alta", "Média", "Compras" }.Contains(userRole))
+	{
+		<div class="d-flex justify-content-between align-items-center">
+			<p class="btnNewItem m-1">
+				<a class="btn btn-dark" asp-action="Create">Novo Produto</a>
+			</p>
+			@if (new[] { "Alta", "Compras" }.Contains(userRole))
+			{
+				<p class="btnExpCSV m-1">
+					<button id="export-csv-btn" class="btn btn-dark" type="button">Exportar CSV</button>
+				</p>
+				<p class="ms-3 mt-3">
+					Valor total do estoque: R$ @ViewBag.TotalPrice
+				</p>
+			}
+		</div>
+	}
+	<div id="divBtnSearch" class="d-flex align-middle justify-content-end">
+		<div class="div-search-bar input mb-3 d-flex align-middle align-items-center" style="height:2.5em;margin-top:2px;">
+			<button onclick="showBar()" type="submit" class="btn-sm buttonBar btn">
+				<img src="~/img/products/search.png" width="22" class="m-1 align-middle" />
+			</button>
+			<input type="text" id="myInput" class="searchBar form-control input-home" placeholder="Pesquisar...(código ou nome)" style="width:16em;margin-top:2px;">
+		</div>
+	</div>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th class="text-center sortable" data-type="number">
+				Nº
+			</th>
+			<th class="text-center sortable" data-type="string">
+				@Html.DisplayNameFor(model => model.codeProduct)
+			</th>
+			<th class="text-center sortable" data-type="string">
+				@Html.DisplayNameFor(model => model.name)
+			</th>
+			<th class="text-center sortable" data-type="number">
+				@Html.DisplayNameFor(model => model.quantity)
+			</th>
+			<th class="text-center sortable" data-type="string">
+				@Html.DisplayNameFor(model => model.unitId)
+			</th>
+			@if (new[] { "Alta", "Compras" }.Contains(userRole))
+			{
+				<th class="text-center headerPrice sortable">
+					@Html.DisplayNameFor(model => model.price)
+				</th>
+			}
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.updateTime)
+			</th>
+			<th id="headerAction" class="text-center">Ações</th>
+		</tr>
+	</thead>
+	<tbody id="tabelaIndex">
+		@foreach (var item in Model)
+		{
+			<tr data-id="@item.id">
+				@{
+					contador++;
+					<td class="text-center align-middle">
+						@contador
+					</td>
+				}
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.codeProduct)
+				</td>
+				<td class="text-center align-middle my-popover" data-bs-toggle="popover" data-bs-content="@item.name" data-bs-trigger="hover focus" data-bs-delay="500">
+					@((item.alias != null) ? Html.DisplayFor(modelItem => item.alias) : Html.DisplayFor(modelItem => item.name))
+				</td>
+				<td class="text-center align-middle qty-product">
+					@String.Format("{0:0.##}", item.quantity)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.unit.Name)
+				</td>
+				@if (new[] { "Alta", "Compras" }.Contains(userRole))
+				{
+					<td class="text-center align-middle rowPrice">
+						R$ @Html.DisplayFor(modelItem => item.price)
+					</td>
+				}
+				<td class="text-center align-middle updt-time-product">
+					@Html.DisplayFor(modelItem => item.updateTime)
+				</td>
+				<td class="text-center align-middle btnActions">
+					@if (new[] { "Alta", "Média", "Compras" }.Contains(userRole))
+					{
+						<a class="btn btn-secondary me-1 btnEditProd" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+					}
+					@if (userRole == "Alta")
+					{
+						<a class="btn btn-danger btnDelProd me-1" href="#" onclick="deleteProduct(@item.id, '@item.name')">Excluir</a>
+					}
+					@if (new[] { "Alta", "Média", "Baixa", "Compras" }.Contains(userRole))
+					{
+						<a class="btn btn-success btnQtyProd" href="#" onclick="updtQty(@item.id, @item.quantity)">Quantidade</a>
+					}
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<div class="modal" id="modal" tabindex="-1"></div>
+
+@section Scripts {
+	<script>
+		var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+		var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+			return new bootstrap.Popover(popoverTriggerEl)
+		})
+	</script>
+}

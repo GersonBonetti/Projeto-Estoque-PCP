@@ -1,0 +1,58 @@
+﻿@model Sln.Estoque.Domain.DTO.LayoutDTO
+
+@{
+    ViewData["Title"] = "Adicionar Layout";
+}
+
+<h1>Adicionar novo layout</h1>
+
+<h4>Layouts</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 my-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-3 my-popover" data-bs-toggle="popover" data-bs-content="Aqui você determina o nome que será exibido na visualização da tabela" data-bs-trigger="hover focus" data-bs-delay="300">
+                <label asp-for="viewName" class="control-label mb-1"></label>
+                <input asp-for="viewName" class="form-control border-dark" />
+                <span asp-validation-for="viewName" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3 my-popover" data-bs-toggle="popover" data-bs-content="Este é o campo que determina como encontrar o layout, por isso este campo deve ser preenchido de maneira fiel ao nome do arquivo gerado. Este campo faz diferenciação de letras maíucsulas e minúsculas" data-bs-trigger="hover focus" data-bs-delay="300">
+                <label asp-for="fileName" class="control-label mb-1"></label>
+                <input asp-for="fileName" class="form-control border-dark" min="0" /> 
+                <span asp-validation-for="fileName" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3 my-popover" data-bs-toggle="popover" data-bs-content="O multiplicador é o campo responsável por informar por quantas vezes o layout será multiplicado na calculadora, portanto deve sempre ser preenchido de acordo com a construção do layout." data-bs-trigger="hover focus" data-bs-delay="300">
+                <label asp-for="multiplier" class="control-label mb-1"></label>
+                <input asp-for="multiplier" class="form-control border-dark" min="0" />
+                <span asp-validation-for="multiplier" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3 my-popover" data-bs-toggle="popover" data-bs-content="Método 1 - ZPL | Método 2 - TXT" data-bs-trigger="hover focus" data-bs-delay="300">
+                <label asp-for="method" class="control-label mb-1"></label>
+                <input asp-for="method" class="form-control border-dark" min="0" />
+                <span asp-validation-for="method" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3 my-popover" data-bs-toggle="popover" data-bs-content="Usado somente em arquivos TXT. Serve para determinar a posição da quantidade dentro do arquivo. Começando em 0" data-bs-trigger="hover focus" data-bs-delay="300">
+                <label asp-for="quantityPosition" class="control-label mb-1"></label>
+                <input asp-for="quantityPosition" class="form-control border-dark" min="0" />
+                <span asp-validation-for="quantityPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Adicionar" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-5">
+    <a asp-action="Index" class="text-decoration-none link-dark">Voltar para a lista</a>
+</div>
+
+@section Scripts {
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Sln.Estoque.Domain.DTO.UnitDTO>
+
+@{
+	ViewData["Title"] = "Unidade";
+	int contador = 0;
+}
+
+<div class="d-flex align-middle justify-content-between">
+	<p>
+		<a class="btn btn-dark" asp-action="Create">Nova Unidade</a>
+	</p>
+	<div class="div-search-bar input mb-3 col-md-3 d-flex justify-content-end align-middle align-items-center" style="height:2.5em;margin-top:2px;">
+		<button onclick="showBar()" type="submit" class="btn-sm buttonBar btn">
+			<img src="~/img/products/search.png" width="22" class="m-1 align-middle" />
+		</button>
+		<input type="text" id="myInput" class="searchBar form-control input-home" placeholder="Pesquisar...(código ou nome)">
+	</div>
+</div>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th class="text-center">
+				Nº
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.id)
+			</th>
+			<th class="text-center">
+				@Html.DisplayNameFor(model => model.name)
+			</th>
+			<th class="text-center">Ações</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				@{
+					contador++;
+					<td class="text-center align-middle">
+						@contador
+					</td>
+				}
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.id)
+				</td>
+				<td class="text-center align-middle">
+					@Html.DisplayFor(modelItem => item.name)
+				</td>
+				<td class="text-center align-middle">
+					<a class="btn btn-secondary" asp-action="Edit" asp-route-id="@item.id">Editar</a>
+					<a class="btn btn-danger" href="#" onclick="deleteUnit(@item.id, '@item.name')">Excluir</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

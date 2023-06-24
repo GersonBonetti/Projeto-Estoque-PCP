@@ -1,0 +1,60 @@
+﻿@model Sln.Estoque.Domain.DTO.ProductDTO
+
+@{
+    ViewData["Title"] = "Adicionar Produto";
+}
+
+<h1>Adicionar novo produto</h1>
+
+<h4>Produtos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4 my-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group my-3">
+                <label asp-for="codeProduct" class="control-label mb-1"></label>
+                <input asp-for="codeProduct" class="form-control border-dark" />
+                <span asp-validation-for="codeProduct" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="name" class="control-label mb-1"></label>
+                <input asp-for="name" class="form-control border-dark" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="alias" class="control-label mb-1"></label>
+                <input asp-for="alias" class="form-control border-dark" />
+                <span asp-validation-for="alias" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label class="control-label">Quantidade</label>
+                <input asp-for="quantity" class="form-control border-dark" min="0" />
+                <span asp-validation-for="quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label class="control-label mb-1">Unidade de Medida</label>
+                <select asp-for="unitId" class="form-control border-dark" asp-items="ViewBag.UnitId"></select>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="price" class="control-label mb-1"></label>
+                <div class="input-group">
+                    <span class="input-group-text border-dark">R$</span>
+                    <input asp-for="price" id="value" onkeyup="valueCheck()" class="form-control d-block border-dark" maxlength="12" min="0.00" />
+                </div>
+                <span asp-validation-for="price" class="text-danger"></span>
+            </div>
+            <div class="form-group my-3">
+                <label asp-for="categoryId" class="control-label mb-1"></label>
+                <select asp-for="categoryId" class="form-control border-dark" asp-items="ViewBag.categoryId"></select>
+            </div>
+            <div class="form-group my-3">
+                <input type="submit" value="Adicionar" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mb-5">
+    <a asp-action="Index" class="text-decoration-none link-dark">Voltar para a lista</a>
+</div>
